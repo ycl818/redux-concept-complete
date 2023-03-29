@@ -9,7 +9,15 @@ const unsubsribe = store.subscribe(() => {
   console.log("Update", store.getState());
 });
 
-store.dispatch(fetchTasks());
+// store.dispatch(fetchTasks());
+store.dispatch({
+  type: "apiRequest",
+  payload: {
+    url: "/tasks",
+    onSuccess: "tasks/getTasks",
+    onError: "SHOW_ERROR",
+  },
+});
 
 // const gettingTasks = async () => {
 //   // calling api
